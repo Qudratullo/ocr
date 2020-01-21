@@ -1,0 +1,7 @@
+.idea
+ __pycache__
+venv
+images/learning_dart
+images/Mark_Akoev
+test_data
+train_data
