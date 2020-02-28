@@ -47,7 +47,7 @@ def model_train():
 def main():
     # model_train()
     model = keras.models.load_model("UNetW.h5")
-    val_image, val_mask = read_image("train/img_train.png", "train/label_train.png")
+    val_image, val_mask = read_image("train/img_val.png", "train/label_val.png")
 
     result = model.predict(np.array([val_image]))
     result = result > 0.5
@@ -59,7 +59,7 @@ def main():
     ax.imshow(np.reshape(val_mask * 255, (IMG_WIDTH, IMG_HEIGHT)), cmap="gray")
 
     ax = fig.add_subplot(1, 2, 2)
-    cv2.imwrite("result.png",
+    cv2.imwrite("result_val.png",
                 cv2.resize(np.float32(result[0] * 255), (ORG_IMG_HEIGHT, ORG_IMG_WIDTH), interpolation=cv2.INTER_AREA))
     ax.imshow(np.reshape(result[0] * 255, (IMG_WIDTH, IMG_HEIGHT)), cmap="gray")
     plt.show()
